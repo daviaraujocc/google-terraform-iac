@@ -6,8 +6,8 @@ init:
 
 .PHONY: validate
 validate:
-	terraform -chdir=my-service/ validate
 	terraform -chdir=my-service/ fmt
+	terraform -chdir=my-service/ validate
 
 .PHONY: plan
 plan:
