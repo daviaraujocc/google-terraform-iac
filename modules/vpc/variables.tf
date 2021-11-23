@@ -19,8 +19,7 @@ variable "vpc_network_subnet_cidr" {
 }
 
 variable "allowed_ports" {
-  description = "Allowed ports for instance group"
-  type = "list"
+  description = "Allowed ports for instance group (list)"
 }
 
 variable "tags" {

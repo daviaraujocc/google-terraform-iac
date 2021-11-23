@@ -14,6 +14,8 @@ resource "google_compute_instance_template" "template_default" {
     on_host_maintenance = "MIGRATE"
   }
 
+  access_config {}
+  
   disk {
     source_image      = var.instance_template_image
     auto_delete       = true
