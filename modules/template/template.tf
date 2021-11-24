@@ -2,8 +2,8 @@ resource "google_compute_instance_template" "template_default" {
   name        = var.instance_template_name
   description = "Templated created for instance group web app"
 
-  tags = var.tags
-  labels = var.labels
+  tags   = var.instance_template_tags
+  labels = var.instance_template_labels
 
   instance_description = "description assigned to instances"
   machine_type         = var.instance_template_machine_type
@@ -14,23 +14,23 @@ resource "google_compute_instance_template" "template_default" {
     on_host_maintenance = "MIGRATE"
   }
 
-  access_config {}
-  
+
   disk {
-    source_image      = var.instance_template_image
-    auto_delete       = true
-    boot              = true
-    disk_type = var.instance_template_disk_type
+    source_image = var.instance_template_image
+    auto_delete  = true
+    boot         = true
+    disk_type    = var.instance_template_disk_type
     disk_size_gb = var.instance_template_disk_size
   }
 
-  metadata_startup_script {
-    content = "sudo apt install nginx -y ; echo 'Welcome from host: $(hostname)' > /usr/share/nginx/www/index.html "
-  }
+
+  metadata_startup_script = "sudo apt install nginx -y ; echo 'Welcome from host: $(hostname)' > /usr/share/nginx/www/index.html"
+
 
 
   network_interface {
-    network = var.vpc_network_name
+    network = var.instance_template_network_name
+    access_config {}
   }
-  
+
 }

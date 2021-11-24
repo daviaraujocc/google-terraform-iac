@@ -12,7 +12,7 @@ resource "google_compute_health_check" "autohealing" {
 }
 
 resource "google_compute_target_pool" "webserver" {
-  name = var.instnaces_group_name
+  name = var.instances_group_name
 
   instances = []
 }
@@ -24,8 +24,10 @@ resource "google_compute_instance_group_manager" "webserver" {
   zone               = var.instances_zone
 
   version {
-    instance_template  = google_compute_instance_template.template_default.id
+    instance_template = var.instance_template_name
   }
+
+
 
   target_pools = [google_compute_target_pool.webserver.id]
   target_size  = var.instances_count
