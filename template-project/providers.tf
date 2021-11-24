@@ -11,4 +11,5 @@ provider "google" {
   ## Insert service account here or use google auth to authenticate
   #credentials = file("")
   project     = var.project_id
+  region      = var.region
 }

@@ -4,6 +4,10 @@ variable "project_id" {
   description = "Project ID"
 }
 
+variable "region" {
+  description = "Region"
+}
+
 variable "tags" {
   description = "instance tags"
 }
@@ -28,10 +32,6 @@ variable "vpc_network_subnet_cidr" {
 
 variable "allowed_tcp_ports" {
   description = "Allowed ports for instance group (list)"
-}
-
-variable "vpc_network_region" {
-  description = "Region"
 }
 
 
@@ -70,6 +70,12 @@ variable "instances_zone" {
 }
 variable "instances_group_name" {
   description = "Instance group name"
+}
+variable "instances_group_regional" {
+  description = "Define if instance group is single zone or multiple zone"
+}
+variable "instances_group_regional_zones" {
+  description = "zones where instances will be"
 }
 variable "instances_autoscaler_name" {
   description = "Autoscaler name"
