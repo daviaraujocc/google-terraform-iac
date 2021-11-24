@@ -1,20 +1,6 @@
-resource "google_compute_health_check" "autohealing" {
-  name                = "autohealing-health-check"
-  check_interval_sec  = 5
-  timeout_sec         = 5
-  healthy_threshold   = 2
-  unhealthy_threshold = 10
-
-  http_health_check {
-    request_path = "/"
-    port         = "80"
-  }
-}
 
 resource "google_compute_target_pool" "webserver" {
   name = var.instances_group_name
-
-  instances = []
 }
 
 resource "google_compute_instance_group_manager" "webserver" {
@@ -24,7 +10,7 @@ resource "google_compute_instance_group_manager" "webserver" {
   zone               = var.instances_zone
 
   version {
-    instance_template = var.instance_template_name
+    instance_template = var.instances_template_id
   }
 
 
