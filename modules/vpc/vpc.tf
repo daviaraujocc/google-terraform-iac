@@ -10,3 +10,7 @@ resource "google_compute_subnetwork" "vpc_network_subnet" {
   region        = var.vpc_network_region
   network       = google_compute_network.vpc_network.id
 }
+
+output "output_subnetwork_id" {
+    value = google_compute_subnetwork.vpc_network_subnet.id
+}

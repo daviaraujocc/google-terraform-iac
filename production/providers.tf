@@ -10,5 +10,4 @@ terraform {
 provider "google" {
   credentials = file("auth/terraform-svc.json")
   project     = var.project_id
-  region      = var.region
 }

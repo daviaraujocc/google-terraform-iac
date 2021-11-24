@@ -6,3 +6,4 @@ variable "instance_template_disk_type" {}
 variable "instance_template_network_name" {}
 variable "instance_template_tags" {}
 variable "instance_template_labels" {}
+variable "instance_template_subnetwork_id" {}

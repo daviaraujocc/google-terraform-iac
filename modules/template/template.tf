@@ -27,10 +27,15 @@ resource "google_compute_instance_template" "template_default" {
   metadata_startup_script = "sudo apt install nginx -y ; echo 'Welcome from host: $(hostname)' > /usr/share/nginx/www/index.html"
 
 
-
+  
   network_interface {
     network = var.instance_template_network_name
+    subnetwork = var.instance_template_subnetwork_id
     access_config {}
   }
 
+}
+
+output "output_template_id" {
+  value = "${google_compute_instance_template.template_default.id}"
 }

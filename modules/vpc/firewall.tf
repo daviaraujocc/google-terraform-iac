@@ -17,7 +17,7 @@ resource "google_compute_firewall" "rule_healthcheck" {
 }
 
 resource "google_compute_firewall" "rule_ssh" {
-  name    = "allow-custom-ports"
+  name    = "allow-ssh-local-machine"
   network = google_compute_network.vpc_network.id
 
   # Allow SSH to local machine
@@ -40,7 +40,7 @@ resource "google_compute_firewall" "rule_custom" {
       ports    = var.allowed_tcp_ports
     }
   }
-
+  source_ranges = ["0.0.0.0/0"]
   target_tags = var.tags
 }
 
