@@ -2,6 +2,9 @@
 variable "instances_name" {}
 variable "instances_count" {}
 variable "instances_zone" {}
+variable "instances_region" {}
+variable "instances_group_regional" {}
+variable "instances_group_regional_zones" {}
 variable "instances_group_name" {}
 variable "instances_template_id" {}
 variable "instances_autoscaler_name" {}
