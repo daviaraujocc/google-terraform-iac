@@ -15,9 +15,23 @@ validate:
 plan:
 	terraform -chdir=$(call args, production)/ plan  -var-file terraform.tfvars -out terraform.tfplan
 
-.PHONY: run
+.PHONY: apply
 apply:
-	terraform -chdir=$(call args, production)/ apply  -var-file terraform.tfvars
+	terraform -chdir=$(call args, production)/ apply terraform.tfplan
+
+.PHONY: run
+run:
+	terraform -chdir=$(call args, production)/ plan  -var-file terraform.tfvars -out terraform.tfplan
+	terraform -chdir=$(call args, production)/ apply terraform.tfplan
+
+.PHONY: create-project
+create-project:
+    ## make create-project dir_name env=environment projectid=project_id
+	@[ "${env}" ] || ( echo ">> var env is not set"; exit 1 )
+	@[ "${projectid}" ] || ( echo ">> var projectid is not set"; exit 1 )
+	mkdir $(call args) ; cp -r ./template-project/* $(call args)
+	sed -i "s/{{.ENV}}/${env}/g" $(call args)/terraform.tfvars
+	sed -i "s/{{.PROJECTID}}/${projectid}/g" $(call args)/terraform.tfvars
 
 .PHONY: destroy
 destroy:
